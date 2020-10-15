@@ -1,5 +1,7 @@
 # Portfolio
 
+https://user-images.githubusercontent.com/16371209/96191583-a5df4e00-0f44-11eb-9e17-e82bfac1c72f.png
+
 I built a multi-page portfolio to introduce myself :grinning: :wave: and showcase projects I've built.
 
 ## Built with
