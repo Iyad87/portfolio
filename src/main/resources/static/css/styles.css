@@ -82,13 +82,14 @@ span{
 }
 
 #myPic{
-    height: 330px;
-    width: 285px;
-    border: 1px dimgray solid;
-    border-radius: 30%;
-    float: right;
-    margin-right: 10px;
-    margin-top: 240px;
+        height: 250px;
+        width: 285px;
+        border: 7px dimgray solid;
+        border-radius: 46%;
+        float: right;
+        margin-right: 17px;
+        margin-top: 10%;
+    }
 }
 
 .aboutMe{

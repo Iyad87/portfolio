@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Featured Projects</title>
+    <span th:include="includes :: css"></span>
+</head>
+<body>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:include="navbar :: navbar"></div>
+
+<section class="opacity-project-pg">
+
+    <div class="container project-container">
+
+        <h2 class="projects">Click on the links below to view samples of my web applications:</h2>
+
+        <div class="row project-row">
+            <div th:each="project : ${projects}" class="col-md-4 col-sm-12 project-row">
+                <div class="thumbnail-title"><a target="_blank" th:href="${project.url}"
+                                                th:text="${project.title}"></a></div>
+                <a target="_blank" th:href="${project.url}">
+                    <img class="thumbnail" th:src="${project.image}" alt=""/>
+                </a>
+                <div class="thumbnail-txt">
+                    <div class="technologies" th:text="${project.technologies}"></div>
+                    <div class="repo"><a target="_blank" th:href="${project.code}">GitHub repo</a></div>
+                    <!--add conditional to check for portfolio project-->
+                    <div class="demo"><a th:href="${project.url}" th:if="${project.title} == 'Portfolio Page'">This link is recursive</a></div>
+                    <div
+                            class="demo"><a th:if="${project.title} == 'Running Routes'" href="#">Demo Coming
+                        Soon!</a></div>
+
+                    <div class="demo"><a th:if="${project.title !='Running Routes' and project.title !='Portfolio Page'}" th:target="_blank" th:href="${project.walkthrough}">Demo</a></div>
+
+                    <div class="information">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-default btn-md"
+                                data-toggle="modal" th:attr="data-target='#' + ${project.id}">
+                            Click for description
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div th:each="project : ${projects}" class="modal fade" th:id="${project.id}"
+             aria-labelledby="projectTitle" tabindex="-1" role="dialog">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="projectTitle"
+                            th:text="${project.title}"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="description" th:text="${project.description}"></p>
+                        <p class="completed" th:text="${project.completed}"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> <!--end of Modal div-->
+    </div>
+
+</section>
+
+<div th:include="navbar :: project-footer"></div>
+<span th:include="includes :: js"></span>
+
+
+</body>
+</html>
+
+
+
+

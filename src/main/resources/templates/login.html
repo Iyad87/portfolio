@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Title</title>
+    <span th:include="includes :: css"></span>
+</head>
+
+<body>
+<div th:include="navbar :: navbar"></div>
+<section class="admin-section">
+
+    <h3 th:text="${message}"></h3>
+
+    <div class="container">
+        <h1 class="admin-login">Admin login:</h1>
+        <form th:action="@{/login}" th:object="${user}" method="post">
+            <input type="hidden"
+                   th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}"/>
+            <input type="text" th:field="*{username}" placeholder="Username"/>
+            <input type="password" th:field="*{password}" placeholder="Password"/>
+            <input type="submit" value="Enter"/>
+        </form>
+
+    </div>
+
+</section>
+<div th:include="navbar :: main-footer"></div>
+
+<span th:include="includes :: js"></span>
+
+</body>
+
+</html>
